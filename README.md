@@ -34,7 +34,7 @@ python genCSV.py
 will create `band.csv` which is needed by `genBand.py`.
 
 ```bash
-python genBand.py
+python genBand.py ymin ymax
 ```
 will plot the band structure.
 

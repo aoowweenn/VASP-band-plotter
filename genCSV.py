@@ -1,8 +1,9 @@
 import re
 import csv
 
-STR_MATCH_KLABEL = r'\s*(?:\s*-?\d+.\d+)+\s*!\s*(\w)'
-STR_MATCH_FERMI = r'^\s*E-fermi\s*:\s*(-?\d+.\d+)'
+FLOAT_EXPR = r'[-+]?[0-9]*\.?[0-9]+'
+STR_MATCH_KLABEL = r'\s*(?:\s*'+ FLOAT_EXPR + r'){3}\s*!\s*(\w)'
+STR_MATCH_FERMI = r'^\s*E-fermi\s*:\s*(' + FLOAT_EXPR + r')'
 STR_MATCH_ISPIN = r'ISPIN  =      (\d)'
 STR_MATCH_KPOINT = r'k-points along high symmetry lines'
 

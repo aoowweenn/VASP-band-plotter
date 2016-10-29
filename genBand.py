@@ -1,5 +1,15 @@
+import sys
 import matplotlib.pyplot as plt
 import pandas as pd
+
+if len(sys.argv) is not 3:
+    print("Usage: python genBand.py ymin ymax")
+    sys.exit(-1)
+try:
+    ylim = (float(sys.argv[1]), float(sys.argv[2]))
+except:
+    print("(ymin, ymax) is not valid, use default (-3, 2)")
+    ylim = (-3, 2)
 
 data = pd.read_csv('band.csv')
 
@@ -19,7 +29,6 @@ for i, label in enumerate(data.label):
 
 data_with_pathcoord_index = data.set_index('pathcoord').reset_index()
 
-ylim = (-3, 2)
 ax = data.plot(x='pathcoord', y=data_with_pathcoord_index.columns[2:], legend=False, ylim=ylim)
 
 xlim = ax.get_xlim()
