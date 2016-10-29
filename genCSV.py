@@ -53,8 +53,8 @@ for line in kpoint_lines:
 # print(kpoints, len(kpoints))
 
 occupy, n_kpoints, n_bands = [int(x) for x in eigs_lines[0].split()]
-print("occupy", "n_kpoints", "n_bands")
-print(occupy, n_kpoints, n_bands)
+print(("occupy", "n_kpoints", "n_bands"))
+print((occupy, n_kpoints, n_bands))
 print("Fermi energy")
 print(fermi)
 eigs_lines = eigs_lines[3:]
