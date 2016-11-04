@@ -1,11 +1,11 @@
 import re
 import csv
 
-FLOAT_EXPR = r'[-+]?[0-9]*\.?[0-9]+'
+FLOAT_EXPR = r'[-+]?[0-9]*\.?[0-9]*'
 STR_MATCH_KLABEL = r'\s*(?:\s*'+ FLOAT_EXPR + r'){3}\s*!\s*(\w)'
 STR_MATCH_FERMI = r'^\s*E-fermi\s*:\s*(' + FLOAT_EXPR + r')'
 STR_MATCH_ISPIN = r'ISPIN  =      (\d)'
-STR_MATCH_KPOINT = r'k-points along high symmetry lines'
+STR_MATCH_KPOINT = r'and weight'
 
 with open('OUTCAR', 'r') as fin:
     lines = fin.readlines()
@@ -43,7 +43,7 @@ for i, line in enumerate(lines):
     if match_kpt:
         match_line_ind.append(i)
 
-kpoint_lines = lines[match_line_ind[1]+1:match_line_ind[-1]]
+kpoint_lines = lines[match_line_ind[0]+1:match_line_ind[-1]]
 
 kpoints = []
 for line in kpoint_lines:
@@ -73,6 +73,7 @@ for i, j in enumerate(range(0, n_kpoints, n_kpoints/(len(k_label)-1))):
     labels[j] = k_label[i]
 labels[-1] = k_label[-1]
 
+# print(labels)
 
 # write to CSV file
 with open('band.csv', 'wb') as csvFile:
