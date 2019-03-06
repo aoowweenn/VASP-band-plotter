@@ -69,14 +69,14 @@ for i in range(n_kpoints):
 # print(eigs)
 
 labels = [""] * n_kpoints
-for i, j in enumerate(range(0, n_kpoints, n_kpoints/(len(k_label)-1))):
+for i, j in enumerate(range(0, n_kpoints, int(n_kpoints/(len(k_label)-1)))):
     labels[j] = k_label[i]
 labels[-1] = k_label[-1]
 
 # print(labels)
 
 # write to CSV file
-with open('band.csv', 'wb') as csvFile:
+with open('band.csv', 'w') as csvFile:
     bandWriter = csv.writer(csvFile)
     bandWriter.writerow(['kx', 'ky', 'kz', 'label'] + ['band%ds%d' % (x, s) for x in range(1, n_bands+1) for s in range(1, ispin+1)])
     for i in range(n_kpoints):
